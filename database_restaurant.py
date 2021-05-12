@@ -222,11 +222,55 @@ class Databases:
         cur = con.cursor()
         cur.execute(sql, dishes)
         con.commit() 
+#------------------------------Dele-------------------------------
+    def delete_category(con, id):
+        """
+        Delete a task by category id, name,
+        """
+        sql = 'DELETE FROM Category WHERE Id=?'
+        cur = con.cursor()
+        cur.execute(sql, (id,))
+        con.commit()
+        
+
+    """Delete from Customer"""
+    def delete_Customer(con, id):
+        """
+        Delete a task by Customer 
+        """
+        sql = 'DELETE FROM Customer WHERE Id=?'
+        cur = con.cursor()
+        cur.execute(sql, (id,))
+        con.commit()
+
+    def delete_Disher(con, id):
+        """
+        Delete a task by  Dishes id, name,
+        """
+        sql = 'DELETE FROM Dishes WHERE Id=?'
+        cur = con.cursor()
+        cur.execute(sql, (id,))
+        con.commit()
+        
+    def delete_chef(con, id):
+        
+        sql='DELETE FROM Chef WHERE Id=?'
+        cur = con.cursor()
+        cur.execute(sql, (id,))
+        con.commit()
+        
+    def delete_ordering_table(con,id):
+        sql='DELETE FROM Ordering WHERE Id=?'
+        cur = con.cursor()
+        cur.execute(sql, (id,))
+        con.commit()
+
 
 if __name__ == '__main__':
     Databases.main()
     con =  Databases.create_connection(database)
     with con:
+       # Databases.delete_Customer(con,0)
     # categorys=(100,'banana')
     # categorys_1=(101,'drink')  
     # Databases.insert_category_table(con,categorys)
