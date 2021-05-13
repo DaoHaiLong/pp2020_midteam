@@ -1,9 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 
-database = r"D:\file\Projectmird\sqlite\la.db"
-
-
+database = r"D:\file\Projectmird\sqlite\lad.db"
 def create_connection(db_file):
     # Create a connection to SQLite database
     con = None
@@ -28,30 +26,31 @@ def create_table(con, sql_table):
 
 def CreateTable():
     sql_create_customer_table = """CREATE TABLE IF NOT EXISTS Customer(
-                                        Id					INT PRIMARY KEY ,
+                                        Id					INTEGER PRIMARY KEY ,
                                         Full_Name			VARCHAR(200) NOT NULL,
                                         Phone				VARCHAR(20) NOT NULL,
-                                        Number_people		INT NOT NULL,
+                                        Number_people		INTEGER NOT NULL,
                                         Arrive_time			DATETIME DEFAULT CURRENT_TIMESTAMP
                                     ); """
 
     sql_create_dishes_table = """CREATE TABLE IF NOT EXISTS Dishes(
-                                      Id				INT  PRIMARY KEY ,
+                                      Id				INTEGER  PRIMARY KEY ,
                                       Dish_name		    VARCHAR(200) NOT NULL,
                                       Price			    FLOAT NOT NULL
                                     ); """
 
     sql_create_ordering_table = """CREATE TABLE IF NOT EXISTS Ordering(
-                                      Id                INT PRIMARY KEY,
-                                      CustomerId		INT NOT NULL,
+                                      Id                 INTEGER PRIMARY KEY,
+                                      NameOrder          VARCHAR(50) NOT NULL,
+                                      CustomerId		INTEGER NOT NULL,
                                       FOREIGN KEY (CustomerId) REFERENCES Customer(Id)
                                     ); """
 
     sql_create_dishes_ordering_table = """CREATE TABLE IF NOT EXISTS Dishes_Ordering(
-                                        Id				INT  PRIMARY KEY ,
-                                        DishesId		INT NOT NULL,
-                                        OrderingId		INT NOT NULL,
-                                        Quantity		INT NOT NULL,
+                                        Id				INTEGER  PRIMARY KEY ,
+                                        DishesId		INTEGER NOT NULL,
+                                        OrderingId		INTEGER NOT NULL,
+                                        Quantity		INTEGER NOT NULL,
                                         FOREIGN KEY (DishesId)   REFERENCES Dishes(Id),
                                         FOREIGN KEY (OrderingId)  REFERENCES Ordering(Id)
                                     ); """
@@ -67,16 +66,18 @@ def CreateTable():
 
 
 # -----------------------------------------------INSERT----------------------------------------------------------
+
+con = create_connection(database)
 def insert_customer_table(con, cus, ):
-    sql = '''INSERT INTO Customer(Id,Full_Name, Phone ,Number_people,Arrive_time)
-             VALUES(?,?,?,?,?) '''
+    sql = '''INSERT INTO Customer(Full_Name, Phone ,Number_people,Arrive_time)
+             VALUES(?,?,?,?) '''
     cur = con.cursor()
     cur.execute(sql, cus)
     con.commit()
-
+    return cur.lastrowid
 
 def insert_ordering_table(con, oder):
-    sql = '''INSERT INTO Ordering(Id,CustomerId )
+    sql = '''INSERT INTO Ordering(NameOrder,CustomerId )
              VALUES(?,?) '''
     cur = con.cursor()
     cur.execute(sql, oder)
@@ -85,8 +86,8 @@ def insert_ordering_table(con, oder):
 
 
 def insert_dishes_table(con, dis):
-    sql = '''INSERT INTO Dishes(Id,Dish_name, Price)
-                     VALUES(?,?,?) '''
+    sql = '''INSERT INTO Dishes(Dish_name, Price)
+                     VALUES(?,?) '''
     cur = con.cursor()
     cur.execute(sql, dis)
     con.commit()
@@ -94,8 +95,8 @@ def insert_dishes_table(con, dis):
 
 
 def insert_dishes_ordering_table(con, dishesorder):
-    sql = '''INSERT INTO Dishes_Ordering(Id,DishesId, OrderingId,Quantity, Price)
-                         VALUES(?,?,?,?,?) '''
+    sql = '''INSERT INTO Dishes_Ordering(DishesId, OrderingId,Quantity)
+                         VALUES(?,?,?) '''
     cur = con.cursor()
     cur.execute(sql, dishesorder)
     con.commit()
@@ -119,6 +120,7 @@ def update_customer_table(con, customer):
 def update_ordering_table(con, oderding):
     sql = ''' UPDATE  Ordering
               SET     Id  = ?,
+                      NameOrder=?,
                       CustomerId = ?
               WHERE   Id =? '''
     cur = con.cursor()
@@ -176,8 +178,7 @@ def delete_dishes_ordering(con, id):
     cur = con.cursor()
     cur.execute(sql, (id,))
     con.commit()
-    
-con = create_connection(database)
+#----------------------------------------SEARCH---------------------------
 def search_Customer():
     cur = con.cursor()
     cur.execute("SELECT * FROM Customer WHERE Id =2")
@@ -189,7 +190,35 @@ def search_Customer():
 
 
 if __name__ == '__main__':
-    search_Customer()
-    pass
+  #  CreateTable()
+    con = create_connection(database)
+    with con:
+        cus1 = ('daodsw', '01364824575', 10, '1')
+        cus2 = ('dao hai longg', '0136481020', 15045, '3')
+        dis = ('osuki', 1000000)
+        dis1 = ('mame', 2540000)
+
+        CustomerId= insert_customer_table(con, cus1)
+        CustomerId1 = insert_customer_table(con, cus2)
+
+        oder=('daoi1',CustomerId)
+        oder1=('hat',CustomerId1)
+
+        OrderingId=insert_ordering_table(con,oder)
+        OrderingId1=insert_ordering_table(con,oder1)
+
+        DishesId = insert_dishes_table(con, dis)
+        DishesId1 = insert_dishes_table(con, dis1)
+        dishesorder=(DishesId,OrderingId,'good')
+        dishesorder1=(DishesId1,OrderingId1,'excellent')
+
+        insert_dishes_ordering_table(con,dishesorder)
+        insert_dishes_ordering_table(con,dishesorder1)
+
+
+
+
+
+
 
 
