@@ -1,284 +1,195 @@
 import sqlite3
 from sqlite3 import Error
 
-database = r"D:\file\Projectmird\sqlite\Python_SQLite.db"
-class Databases:
-    def create_connection(db_file):
-          #Create a connection to SQLite database
-          con = None
-          try:
-              con = sqlite3.connect(db_file)
-              print ("Opened database successfully")
-              return con
-          except Error as E:
-              print(E)
+database = r"D:\file\Projectmird\sqlite\la.db"
 
-          return con
 
-    def create_table(con, sql_table):
-          #Create a table from sql_table statement
-          try:
-              c = con.cursor()
-              c.execute(sql_table)
-          except Error as E:
-              print(E)
-         
+def create_connection(db_file):
+    # Create a connection to SQLite database
+    con = None
+    try:
+        con = sqlite3.connect(db_file)
+        print("Opened database successfully")
+        return con
+    except Error as E:
+        print(E)
 
-    def main():
-          sql_create_category_table = """CREATE TABLE IF NOT EXISTS  Category (
-            
-                                            Id				INT PRIMARY KEY,
-                                            CategoryName	VARCHAR(200) NOT NULL
-                                            
-                                        );"""
+    return con
 
-          sql_create_customer_table = """CREATE TABLE IF NOT EXISTS Customer (
-            
-                                            Id					INT  PRIMARY KEY,
-                                            Full_Name			VARCHAR(200) NOT NULL,
-                                            Phone				VARCHAR(20) NOT NULL,
-                                            Number_people		INT NOT NULL,
-                                            Arrive_time			DATETIME DEFAULT CURRENT_TIMESTAMP
-                                            
-                                        );"""
-                                        
-          sql_create_chef_table = """CREATE TABLE IF NOT EXISTS Chef (
-            
-                                          Id				INT NOT NULL PRIMARY KEY,
-                                          FullName		VARCHAR(200) NOT NULL,
-                                          Email			VARCHAR(200) NOT NULL,
-                                          Phone			VARCHAR(20) NOT NULL,
-                                          Salary			FLOAT NOT NULL
-                                          
-                                      );"""
 
-          sql_create_dishes_table = """CREATE TABLE IF NOT EXISTS Dishes (
-            
-                                          Id				INT NOT NULL PRIMARY KEY,
-                                          Dish_name		VARCHAR(200) NOT NULL,
-                                          Price			FLOAT NOT NULL,
-                                          Status			VARCHAR(9) NOT NULL
-                                          CHECK(status = "Sold out" OR status = "Remaining"),
-                                          Description		LONGTEXT,
-                                          CategoryId		INT NOT NULL REFERENCES Category(Id),
-                                          ChefId			INT NOT NULL REFERENCES Chef(Id)
-                                          
-                                        );"""
+def create_table(con, sql_table):
+    # Create a table from sql_table statement
+    try:
+        c = con.cursor()
+        c.execute(sql_table)
+    except Error as E:
+        print(E)
 
-          sql_create_ordering_table = """CREATE TABLE IF NOT EXISTS Ordering (
-            
-                                          Id				INT PRIMARY KEY,
-                                          CustomerId		INT NOT NULL,
-                                          FOREIGN KEY (CustomerId) REFERENCES Customer (Id)
-                                        );"""
 
-          sql_create_dishes_ordering_table = """CREATE TABLE IF NOT EXISTS Dishes_Ordering (
-            
-                                            Id				INT  NOT NULL PRIMARY KEY,
-                                            DishesId		INT NOT NULL REFERENCES Dishes(Id),
-                                            OrderingId		INT NOT NULL REFERENCES Ordering(Id),
-                                            Quantity		INT NOT NULL,
-                                            Price			FLOAT NOT NULL
-                                            
-                                        );"""
+def CreateTable():
+    sql_create_customer_table = """CREATE TABLE IF NOT EXISTS Customer(
+                                        Id					INT PRIMARY KEY ,
+                                        Full_Name			VARCHAR(200) NOT NULL,
+                                        Phone				VARCHAR(20) NOT NULL,
+                                        Number_people		INT NOT NULL,
+                                        Arrive_time			DATETIME DEFAULT CURRENT_TIMESTAMP
+                                    ); """
 
-          sql_create_ingredient_table = """CREATE TABLE IF NOT EXISTS Ingredient (
-            
-                                              Id					INT NOT NULL PRIMARY KEY,
-                                              Ingredient_name		VARCHAR(200) NOT NULL,
-                                              Description			LONGTEXT
-                                              
-                                          );"""
+    sql_create_dishes_table = """CREATE TABLE IF NOT EXISTS Dishes(
+                                      Id				INT  PRIMARY KEY ,
+                                      Dish_name		    VARCHAR(200) NOT NULL,
+                                      Price			    FLOAT NOT NULL
+                                    ); """
 
-          sql_create_dishes_ingredient_table = """CREATE TABLE IF NOT EXISTS Dishes_Ingredient (
-            
-                                                    Id					INT  NOT NULL PRIMARY KEY,
-                                                    DishesId			INT NOT NULL REFERENCES Dishes(Id),
-                                                    IngredientId		INT NOT NULL REFERENCES Ingredient(Id)
-                                                      
-                                                  );"""
+    sql_create_ordering_table = """CREATE TABLE IF NOT EXISTS Ordering(
+                                      Id                INT PRIMARY KEY,
+                                      CustomerId		INT NOT NULL,
+                                      FOREIGN KEY (CustomerId) REFERENCES Customer(Id)
+                                    ); """
 
-          sql_create_comment_table = """CREATE TABLE IF NOT EXISTS Comment (
-            
-                                            Id					INT NOT NULL PRIMARY KEY,
-                                            CustomerId			INT NOT NULL REFERENCES Customer(Id),
-                                            DishesId			INT NOT NULL REFERENCES Dishes(Id),
-                                            CreatedAt			DATETIME DEFAULT CURRENT_TIMESTAMP,
-                                            Content				LONGTEXT,
-                                            Rate				FLOAT DEFAULT 0
-                                            
-                                        );"""
+    sql_create_dishes_ordering_table = """CREATE TABLE IF NOT EXISTS Dishes_Ordering(
+                                        Id				INT  PRIMARY KEY ,
+                                        DishesId		INT NOT NULL,
+                                        OrderingId		INT NOT NULL,
+                                        Quantity		INT NOT NULL,
+                                        FOREIGN KEY (DishesId)   REFERENCES Dishes(Id),
+                                        FOREIGN KEY (OrderingId)  REFERENCES Ordering(Id)
+                                    ); """
 
-          con =  Databases.create_connection(database)
-          if con is not None:
-              Databases.create_table(con, sql_create_category_table)
-              Databases.create_table(con, sql_create_customer_table)
-              Databases.create_table(con, sql_create_chef_table)
-              Databases.create_table(con, sql_create_dishes_table)
-              Databases.create_table(con, sql_create_ordering_table)
-              Databases.create_table(con, sql_create_dishes_ordering_table)
-              Databases.create_table(con, sql_create_ingredient_table)
-              Databases.create_table(con, sql_create_dishes_ingredient_table)
-              Databases.create_table(con, sql_create_comment_table)
+    con = create_connection(database)
+    if con is not None:
+        create_table(con, sql_create_customer_table)
+        create_table(con, sql_create_dishes_table)
+        create_table(con, sql_create_ordering_table)
+        create_table(con, sql_create_dishes_ordering_table)
+    else:
+        print("Error!!! Cannot create the database connection")
 
-          else:
-              print("Error!!! Cannot create the database connection")
-              
-  #----------------------------------INSERT------------------------------------------  
-        
-    def insert_category_table(con,categorys):
-          sql='''INSERT INTO Category(Id,CategoryName)
-                 VALUES(?,?) '''
-          cur = con.cursor()
-          cur.execute(sql, categorys)
-          con.commit()
-          return cur.lastrowid
-        
-    def insert_customer_table(con, custome):
-          sql='''INSERT INTO Customer(Full_Name, Phone ,Number_people,Arrive_time)
-                 VALUES(?,?,?,?) '''
-          cur = con.cursor()
-          cur.execute(sql, custome)
-          con.commit()
-          return cur.lastrowid
-        
-    def insert__ordering_table(con,oderding):
-        sql='''INSERT INTO Ordering(CustomerId )
-                 VALUES(?) '''
-        cur = con.cursor()
-        cur.execute(sql, oderding)
-        con.commit()
-        return cur.lastrowid
-    
-    def insert_chef_table(con,chef):
-        sql='''INSERT INTO Chef(Id, FullName	,Email,Phone,Salary )
-                 VALUES(?,?,?,?,?) '''
-        cur = con.cursor()
-        cur.execute(sql, chef)
-        con.commit()
-        return cur.lastrowid
-      
-    def insert_dishes(con,dishes):
-        sql='''INSERT INTO  Dishes(Id,
-                          Dish_name	,
-                          Price)
-                 VALUES(?,?,?) '''
-        cur = con.cursor()
-        cur.execute(sql, dishes)
-        con.commit()
-        return cur.lastrowid
-          
-#--------------------------------------------UPDATE-------------------------------------
-   
-    def update_category_table(con, category):
-        sql = ''' UPDATE Category
-                  SET   Id	 = ? ,
-                        CategoryName = ? 
-                  WHERE Id = ?'''
-        cur = con.cursor()
-        cur.execute(sql, category)
-        con.commit()
-        
-    def update_customer_table(con, customer):
-       
-        sql = ''' UPDATE Customer
-                  SET  Id	 = ? ,
+
+# -----------------------------------------------INSERT----------------------------------------------------------
+def insert_customer_table(con, cus, ):
+    sql = '''INSERT INTO Customer(Id,Full_Name, Phone ,Number_people,Arrive_time)
+             VALUES(?,?,?,?,?) '''
+    cur = con.cursor()
+    cur.execute(sql, cus)
+    con.commit()
+
+
+def insert_ordering_table(con, oder):
+    sql = '''INSERT INTO Ordering(Id,CustomerId )
+             VALUES(?,?) '''
+    cur = con.cursor()
+    cur.execute(sql, oder)
+    con.commit()
+    return cur.lastrowid
+
+
+def insert_dishes_table(con, dis):
+    sql = '''INSERT INTO Dishes(Id,Dish_name, Price)
+                     VALUES(?,?,?) '''
+    cur = con.cursor()
+    cur.execute(sql, dis)
+    con.commit()
+    return cur.lastrowid
+
+
+def insert_dishes_ordering_table(con, dishesorder):
+    sql = '''INSERT INTO Dishes_Ordering(Id,DishesId, OrderingId,Quantity, Price)
+                         VALUES(?,?,?,?,?) '''
+    cur = con.cursor()
+    cur.execute(sql, dishesorder)
+    con.commit()
+    return cur.lastrowid
+
+
+# ------------------------------------------------------UPDATE------------------------------------------
+def update_customer_table(con, customer):
+    sql = ''' UPDATE Customer
+              SET  Id	 = ? ,
                        Full_Name	 = ? ,
                        Phone   =?,
                        Number_people   =?,	
                        Arrive_time	=?
-                  WHERE Id = ?'''
-        cur = con.cursor()
-        cur.execute(sql, customer)
-        con.commit()
-        
-    def update_ordering_table(con,oderding):
-        sql=''' UPDATE  Ordering
-                SET     Id  = ?,
-                        CustomerId = ?
-                WHERE   Id =? '''
-        cur = con.cursor()
-        cur.execute(sql, oderding)
-        con.commit()   
-                
-    def updatee_chef_table(con,chef):
-        sql=''' UPDATE  Chef
-                SET     Id  = ?,
-                        FullName	=?,
-                        Email	=?,
-                        Phone	 =?,
-                        Salary = ?
-                WHERE   Id =? '''
-        cur = con.cursor()
-        cur.execute(sql, chef)
-        con.commit() 
-        
-    def update_dishes(con,dishes):
-        sql=''' UPDATE  Dishes
-                  SET     Id			=?,
-                          Dish_name		=?,
-                          Price	      =?
-                  WHERE   Id=? '''
-        cur = con.cursor()
-        cur.execute(sql, dishes)
-        con.commit() 
-#------------------------------Dele-------------------------------
-    def delete_category(con, id):
-        """
-        Delete a task by category id, name,
-        """
-        sql = 'DELETE FROM Category WHERE Id=?'
-        cur = con.cursor()
-        cur.execute(sql, (id,))
-        con.commit()
-        
+              WHERE Id = ?'''
+    cur = con.cursor()
+    cur.execute(sql, customer)
+    con.commit()
 
-    """Delete from Customer"""
-    def delete_Customer(con, id):
-        """
-        Delete a task by Customer 
-        """
-        sql = 'DELETE FROM Customer WHERE Id=?'
-        cur = con.cursor()
-        cur.execute(sql, (id,))
-        con.commit()
 
-    def delete_Disher(con, id):
-        """
-        Delete a task by  Dishes id, name,
-        """
-        sql = 'DELETE FROM Dishes WHERE Id=?'
-        cur = con.cursor()
-        cur.execute(sql, (id,))
-        con.commit()
-        
-    def delete_chef(con, id):
-        
-        sql='DELETE FROM Chef WHERE Id=?'
-        cur = con.cursor()
-        cur.execute(sql, (id,))
-        con.commit()
-        
-    def delete_ordering_table(con,id):
-        sql='DELETE FROM Ordering WHERE Id=?'
-        cur = con.cursor()
-        cur.execute(sql, (id,))
-        con.commit()
+def update_ordering_table(con, oderding):
+    sql = ''' UPDATE  Ordering
+              SET     Id  = ?,
+                      CustomerId = ?
+              WHERE   Id =? '''
+    cur = con.cursor()
+    cur.execute(sql, oderding)
+    con.commit()
+
+
+def update_dishes(con, dishes):
+    sql = ''' UPDATE  Dishes
+              SET     Id			=?,
+                      Dish_name		=?,
+                      Price	      =?
+              WHERE  Id=? '''
+    cur = con.cursor()
+    cur.execute(sql, dishes)
+    con.commit()
+
+
+def update_ordering_dishes(con, oedringshe):
+    sql = ''' UPDATE Dishes_Ordering 
+              SET     Id=?,
+                      DishesId=?,
+                      OrderingId=?,
+                      Quantity=?
+              WHERE Id =? '''
+    cur = con.cursor()
+    cur.execute(sql, oedringshe)
+    con.commit()
+
+
+# ------------------------------------------------------------DELETE--------------------------------------------------------
+def delete_Customer(con, id):
+    sql = 'DELETE FROM Customer WHERE Id=?'
+    cur = con.cursor()
+    cur.execute(sql, (id,))
+    con.commit()
+
+
+def delete_Disher(con, id):
+    sql = 'DELETE FROM Dishes WHERE Id=?'
+    cur = con.cursor()
+    cur.execute(sql, (id,))
+    con.commit()
+
+
+def delete_ordering_table(con, id):
+    sql = 'DELETE FROM Ordering WHERE Id=?'
+    cur = con.cursor()
+    cur.execute(sql, (id,))
+    con.commit()
+
+
+def delete_dishes_ordering(con, id):
+    sql = 'DELETE FROM Dishes_Ordering WHERE Id=?'
+    cur = con.cursor()
+    cur.execute(sql, (id,))
+    con.commit()
+    
+con = create_connection(database)
+def search_Customer():
+    cur = con.cursor()
+    cur.execute("SELECT * FROM Customer WHERE Id =2")
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
 
 
 if __name__ == '__main__':
-    Databases.main()
-    con =  Databases.create_connection(database)
-    with con:
-       # Databases.delete_Customer(con,0)
-    # categorys=(100,'banana')
-    # categorys_1=(101,'drink')  
-    # Databases.insert_category_table(con,categorys)
-    # Databases.insert_category_table(con,categorys_1) 
-         #custome=('longgg','0150366445','35','6:12 AM');
-         #CustomerId= Databases.insert_customer_table(con,custome)
-         #ordering=(CustomerId)
-         #Databases.insert__ordering_table(con,ordering)
- 
-    # Databases.update_category_table(con,(1,'daodaoshadg',1))
-    # Databases.update_customer_table(con,(1,'DaoHaiLong','0123456789','2','9:10',1))
+    search_Customer()
+    pass
+
+
