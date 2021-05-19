@@ -10,6 +10,13 @@ Restaurant Information Management System
 
 #  Lưu ý:
         Mỗi lần lấy bài là phải { PULL } về để tránh mất bài của người khác đã update
+        
+# Application:
+        VS Code
+        Pycham
+        mySQL workbench
+        XAMPP Control
+        
 # Dealine:
 
     22/5 Presentation
