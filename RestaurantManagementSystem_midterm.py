@@ -37,7 +37,7 @@ def addCUS():
     f = txtIdCus.get()
 
     if (a == "") | (b == "") | (c == "") | (d == "") | (f==""):
-        messagebox.showinfo("information", "We dont add Customer")
+        messagebox.showinfo("information", "We can't add Customer")
     else:
         try:
             sql = "INSERT INTO Customer (Id,Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s,%s)"
@@ -61,7 +61,7 @@ def updateCUS():
     f = txtIdCus.get()
 
     if (a == "") | (b == "") | (c == "") | (d == "")| (f==""):
-        messagebox.showinfo("information", "We dont update Customer")
+        messagebox.showinfo("information", "We can't update Customer")
     else:
         try:
             sql = "UPDATE Customer SET Full_Name=%s, Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
@@ -85,7 +85,7 @@ def deleteCUS():
     f = txtIdCus.get()
 
     if f == "" :
-        messagebox.showinfo("information", "We dont Delete Customer")
+        messagebox.showinfo("information", "We can't Delete Customer")
     else:
         try:
             sql = "DELETE FROM Customer WHERE Id = %s"
@@ -106,7 +106,7 @@ def addPRODUCT():
     b = txtDish_Name.get()
     c = txtPrice.get()
     if (a == "") | (b == "") | (c == ""):
-        messagebox.showinfo("information", "We dont add product")
+        messagebox.showinfo("information", "We can't add product")
     else:
         try:
             sql = "INSERT INTO Dishes (Id,Dish_name, Price) VALUES (%s, %s,%s)"
@@ -125,7 +125,7 @@ def updatePRODUCT():
     b= txtDish_Name.get()
     c = txtPrice.get()
     if (a == "") | (b == "") | (c == ""):
-        messagebox.showinfo("information", "We dont Update product")
+        messagebox.showinfo("information", "We can't Update product")
     else:
         try:
             sql = "UPDATE Dishes SET Dish_name= %s, Price= %s WHERE Id= %s"
@@ -145,7 +145,7 @@ def deletePRODUCT():
     b = txtDish_Name.get()
     c = txtPrice.get()
     if a == "":
-        messagebox.showinfo("information", "We dont Delete product")
+        messagebox.showinfo("information", "We can't Delete product")
     else:
         try:
             sql = "DELETE FROM Dishes WHERE Id = %s"
@@ -165,7 +165,7 @@ def addOrdering():
     a=Id.get()
     b=CustomerId.get()
     if b== "":
-        messagebox.showinfo("information", "We dont add Ordering")
+        messagebox.showinfo("information", "We can't add Ordering")
     else:
         try:
             sql = "INSERT INTO Ordering (CustomerId,) VALUES (%s)"
@@ -186,7 +186,7 @@ def updateOrdering():
     a = Id.get()
     b = CustomerId.get()
     if (b== "" )|(a ==""):
-        messagebox.showinfo("information", "We dont Update Ordering")
+        messagebox.showinfo("information", "We can't Update Ordering")
     else:
         try:
             sql = "UPDATE Ordering SET CustomerId= %s  WHERE Id= %s"
@@ -205,7 +205,7 @@ def deleteOrdering():
 
     a = Id.get()
     if a== "":
-        messagebox.showinfo("information", "We dont Delete Ordering")
+        messagebox.showinfo("information", "We can't Delete Ordering")
     else:
         try:
             sql = "DELETE FROM Ordering WHERE Id = %s"
