@@ -34,18 +34,20 @@ def addCUS():
     b=txtPhone.get()
     c=txtNumber_people.get()
     d=txtArrive_time.get()
+    if (a == "") | (b == "") | (c == "") | (d == ""):
+        messagebox.showinfo("information", "We dont add Customer")
+    else:
+        try:
+            sql = "INSERT INTO Customer (Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s)"
+            val = (a, b, c, d)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Insert Customer successfully")
 
-    try:
-        sql = "INSERT INTO Customer (Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s)"
-        val = (a, b, c, d)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Insert Customer successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 
 def updateCUS():
@@ -54,18 +56,20 @@ def updateCUS():
     b=txtPhone.get()
     c=txtNumber_people.get()
     d=txtArrive_time.get()
+    if (a == "") | (b == "") | (c == "") | (d == ""):
+        messagebox.showinfo("information", "We dont update Customer")
+    else:
+        try:
+            sql = "UPDATE Customer SET  Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
+            val = (a, b, c, d)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Update Customer successfully")
 
-    try:
-        sql = "UPDATE Customer SET  Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
-        val = (a, b, c, d)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Update Customer successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 
 def deleteCUS():
@@ -74,18 +78,20 @@ def deleteCUS():
     b = txtPhone.get()
     c = txtNumber_people.get()
     d = txtArrive_time.get()
+    if a == "" :
+        messagebox.showinfo("information", "We dont Delete Customer")
+    else:
+        try:
+            sql = "DELETE FROM Customer WHERE Full_Name = %s"
+            val=(a,)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Delete Customer successfully")
 
-    try:
-        sql = "DELETE FROM Customer WHERE Full_Name = %s"
-        val=(a,)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Delete Customer successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 
 def addPRODUCT():
@@ -93,52 +99,58 @@ def addPRODUCT():
     a=txt_id.get()
     b = txtDish_Name.get()
     c = txtPrice.get()
-
-    try:
-        sql = "INSERT INTO Dishes (Id,Dish_name, Price) VALUES (%s, %s,%s)"
-        val = (a, b,c)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Insert product successfully")
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+    if (a == "") | (b == "") | (c == ""):
+        messagebox.showinfo("information", "We dont add product")
+    else:
+        try:
+            sql = "INSERT INTO Dishes (Id,Dish_name, Price) VALUES (%s, %s,%s)"
+            val = (a, b,c)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Insert product successfully")
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 def updatePRODUCT():
 
     a = txt_id.get()
     b= txtDish_Name.get()
     c = txtPrice.get()
+    if (a == "") | (b == "") | (c == ""):
+        messagebox.showinfo("information", "We dont Update product")
+    else:
+        try:
+            sql = "UPDATE Dishes SET Dish_name= %s, Price= %s WHERE Id= %s"
+            val = (a,b,c)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Update product successfully")
 
-    try:
-        sql = "UPDATE Dishes SET Dish_name= %s, Price= %s WHERE Id= %s"
-        val = (a,b,c)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Update product successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 def deletePRODUCT():
 
     a = txt_id.get()
     b = txtDish_Name.get()
     c = txtPrice.get()
-
-    try:
-        sql = "DELETE FROM Dishes WHERE Id = %s"
-        val=(a,)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Delete product successfully")
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+    if a == "":
+        messagebox.showinfo("information", "We dont Delete product")
+    else:
+        try:
+            sql = "DELETE FROM Dishes WHERE Id = %s"
+            val=(a,)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Delete product successfully")
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 def addOrdering():
     global Id
@@ -146,18 +158,20 @@ def addOrdering():
 
     a=Id.get()
     b=CustomerId.get()
+    if b== "":
+        messagebox.showinfo("information", "We dont add Ordering")
+    else:
+        try:
+            sql = "INSERT INTO Ordering (CustomerId,) VALUES (%s)"
+            val = (b,)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Insert Ordering successfully")
 
-    try:
-        sql = "INSERT INTO Ordering (CustomerId,) VALUES (%s)"
-        val = (b,)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Insert Ordering successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 def updateOrdering():
     global Id
@@ -165,34 +179,39 @@ def updateOrdering():
 
     a = Id.get()
     b = CustomerId.get()
+    if (b== "" )|(a ==""):
+        messagebox.showinfo("information", "We dont Update Ordering")
+    else:
+        try:
+            sql = "UPDATE Ordering SET CustomerId= %s  WHERE Id= %s"
+            val = (a, b)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Update Ordering successfully")
 
-    try:
-        sql = "UPDATE Ordering SET CustomerId= %s  WHERE Id= %s"
-        val = (a, b)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Update Ordering successfully")
-
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 def deleteOrdering():
     global Id
 
     a = Id.get()
-    try:
-        sql = "DELETE FROM Ordering WHERE Id = %s"
-        val=(a,)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        messagebox.showinfo("information", "Delete Ordering successfully")
+    if a== "":
+        messagebox.showinfo("information", "We dont Delete Ordering")
+    else:
+        try:
+            sql = "DELETE FROM Ordering WHERE Id = %s"
+            val=(a,)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            messagebox.showinfo("information", "Delete Ordering successfully")
 
-    except EXCEPTION as e:
-        print(e)
-        mydb.rollback()
-    mydb.close()
+        except EXCEPTION as e:
+            print(e)
+            mydb.rollback()
+        mydb.close()
 
 
 def add_Dishes_Ordering():
@@ -337,29 +356,35 @@ def Exit():
         return None
 
 def Reset():
+    reset_program = messagebox.askyesno(
+        title='Restaurant Management System',
+        message='Confirm if you want to reset program?')
+    if reset_program > 0:
 
-    txtFull_Name.delete(0, END)
-    txtPhone.delete(0, END)
-    txtNumber_people.delete(0, END)
-    txtArrive_time.delete(0, END)
+        txtFull_Name.delete(0, END)
+        txtPhone.delete(0, END)
+        txtNumber_people.delete(0, END)
+        txtArrive_time.delete(0, END)
 
-    txtDish_Name.delete(0, END)
-    txtPrice.delete(0, END)
-    txt_id.delete(0, END)
+        txtDish_Name.delete(0, END)
+        txtPrice.delete(0, END)
+        txt_id.delete(0, END)
 
-    txt_reference.delete(0, END)
-    txt_Buri.delete(0, END)
-    txt_Grilled_cod_fish.delete(0, END)
-    txt_Herring_fish.delete(0, END)
-    txt_karikari.delete(0, END)
-    txt_Saba.delete(0, END)
+        txt_reference.delete(0, END)
+        txt_Buri.delete(0, END)
+        txt_Grilled_cod_fish.delete(0, END)
+        txt_Herring_fish.delete(0, END)
+        txt_karikari.delete(0, END)
+        txt_Saba.delete(0, END)
 
-    txt_Salmon.delete(0, END)
-    txt_Snapper.delete(0, END)
-    txt_Chankonabe.delete(0, END)
-    txt_Cost.delete(0, END)
-    txt_Total.delete(0, END)
-    txt_Services.delete(0, END)
+        txt_Salmon.delete(0, END)
+        txt_Snapper.delete(0, END)
+        txt_Chankonabe.delete(0, END)
+        txt_Cost.delete(0, END)
+        txt_Total.delete(0, END)
+        txt_Services.delete(0, END)
+    else:
+        return None
 
 # ====================================== initial variable ======================================#
 
