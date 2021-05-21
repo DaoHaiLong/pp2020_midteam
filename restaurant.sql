@@ -1,7 +1,7 @@
 CREATE DATABASE resma;
 USE resma;
 CREATE TABLE Customer (
-	Id					INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Id					INT NOT NULL  PRIMARY KEY,
 	Full_Name			VARCHAR(200) NOT NULL ,
     Phone				VARCHAR(20) NOT NULL,
     Number_people		INT NOT NULL,
@@ -38,6 +38,9 @@ VALUES (1,'Buri',250),
        (8,'Chankonabe',80);
 UPDATE Dishes SET Dish_name='hyadvw',Price=1 WHERE Id = 8;
 select * from Customer;
-select * from Dishes
+select * from Dishes;
+
+select COUNT(Id) 
+from Dishes;
 
 

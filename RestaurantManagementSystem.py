@@ -29,14 +29,15 @@ root.geometry("1400x800")
 # =============================== Function to add, update, show, delete of Database =============================== #
 
 def addCUS():
+    f=txtIdCus.get()
     a = txtFull_Name.get()
     b = txtPhone.get()
     c = txtNumber_people.get()
     d = txtArrive_time.get()
 
     try:
-        sql = "INSERT INTO Customer (Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s)"
-        val = (a, b, c, d)
+        sql = "INSERT INTO Customer (Id,Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s,%s)"
+        val = (f,a, b, c, d)
         mycursor.execute(sql, val)
         mydb.commit()
         messagebox.showinfo("information", "Insert Customer successfully")
@@ -48,14 +49,15 @@ def addCUS():
 
 
 def updateCUS():
+    f = txtIdCus.get()
     a = txtFull_Name.get()
     b = txtPhone.get()
     c = txtNumber_people.get()
     d = txtArrive_time.get()
 
     try:
-        sql = "UPDATE Customer SET  Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
-        val = (a, b, c, d)
+        sql = "UPDATE Customer SET Full_Name ,Phone=%s, Number_people=%s, Arrive_time=%s WHERE Id=%s"
+        val = (a, b, c, d, f)
         mycursor.execute(sql, val)
         mydb.commit()
         messagebox.showinfo("information", "Update Customer successfully")
@@ -67,6 +69,8 @@ def updateCUS():
 
 
 def deleteCUS():
+
+    f = txtIdCus.get()
     a = txtFull_Name.get()
     b = txtPhone.get()
     c = txtNumber_people.get()
@@ -74,7 +78,7 @@ def deleteCUS():
 
     try:
         sql = "DELETE FROM Customer WHERE Id = %s"
-        val = (a,)
+        val = (f,)
         mycursor.execute(sql, val)
         mydb.commit()
         messagebox.showinfo("information", "Delete Customer successfully")
@@ -111,7 +115,7 @@ def updatePRODUCT():
 
     try:
         sql = "UPDATE Dishes SET Dish_name= %s, Price= %s WHERE Id= %s"
-        val = (a, b, c)
+        val = ( b, c,a)
         mycursor.execute(sql, val)
         mydb.commit()
         messagebox.showinfo("information", "Update product successfully")
@@ -524,6 +528,17 @@ bottomFrame.pack(side=BOTTOM)
 
 # get information of customer
 
+lblIdCus= Label(leftframe1,
+                     font=('arial', 12, 'bold'),
+                     text="CustomerId", padx=1)
+lblIdCus.grid(row=0, column=0, sticky=W)
+
+txtIdCus = Entry(leftframe1,
+                     font=('arial', 12, 'bold'),
+                     width=20)
+txtIdCus.grid(row=0, column=1, pady=3, padx=20)
+
+
 lblFull_Name = Label(leftframe1,
                      font=('arial', 12, 'bold'),
                      text="CustomerName", padx=1)
@@ -888,6 +903,25 @@ btnUpdate = Button(bottomFrame,
                    text='Exit',
                    command=Exit)
 btnUpdate.grid(row=0, column=8, padx=4, pady=1)
+
+btnAdd = Button(bottomFrame,
+                bd=4,
+                font=('arial', 13, 'bold'),
+                width=13,
+                height=3,
+                text='update pro',
+                command=updatePRODUCT)
+btnAdd.grid(row=0, column=9, padx=4, pady=1)
+
+btnUpdate = Button(bottomFrame,
+                   bd=4, font=('arial', 13, 'bold'),
+                   width=13,
+                   height=3,
+                   text='updatecus',
+                   command=updateCUS)
+btnUpdate.grid(row=0, column=10, padx=4, pady=1)
+
+
 
 if __name__ == '__main__':
     root.mainloop()

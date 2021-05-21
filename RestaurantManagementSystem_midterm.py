@@ -34,12 +34,14 @@ def addCUS():
     b=txtPhone.get()
     c=txtNumber_people.get()
     d=txtArrive_time.get()
-    if (a == "") | (b == "") | (c == "") | (d == ""):
+    f = txtIdCus.get()
+
+    if (a == "") | (b == "") | (c == "") | (d == "") | (f==""):
         messagebox.showinfo("information", "We dont add Customer")
     else:
         try:
-            sql = "INSERT INTO Customer (Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s)"
-            val = (a, b, c, d)
+            sql = "INSERT INTO Customer (Id,Full_Name, Phone,Number_people,Arrive_time) VALUES (%s, %s,%s,%s,%s)"
+            val = (f,a, b, c, d)
             mycursor.execute(sql, val)
             mydb.commit()
             messagebox.showinfo("information", "Insert Customer successfully")
@@ -56,12 +58,14 @@ def updateCUS():
     b=txtPhone.get()
     c=txtNumber_people.get()
     d=txtArrive_time.get()
-    if (a == "") | (b == "") | (c == "") | (d == ""):
+    f = txtIdCus.get()
+
+    if (a == "") | (b == "") | (c == "") | (d == "")| (f==""):
         messagebox.showinfo("information", "We dont update Customer")
     else:
         try:
-            sql = "UPDATE Customer SET  Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
-            val = (a, b, c, d)
+            sql = "UPDATE Customer SET Full_Name=%s, Phone=%s,Number_people=%s,Arrive_time=%s WHERE Id=%s"
+            val = (a, b, c, d, f)
             mycursor.execute(sql, val)
             mydb.commit()
             messagebox.showinfo("information", "Update Customer successfully")
@@ -78,12 +82,14 @@ def deleteCUS():
     b = txtPhone.get()
     c = txtNumber_people.get()
     d = txtArrive_time.get()
-    if a == "" :
+    f = txtIdCus.get()
+
+    if f == "" :
         messagebox.showinfo("information", "We dont Delete Customer")
     else:
         try:
-            sql = "DELETE FROM Customer WHERE Full_Name = %s"
-            val=(a,)
+            sql = "DELETE FROM Customer WHERE Id = %s"
+            val=(f,)
             mycursor.execute(sql, val)
             mydb.commit()
             messagebox.showinfo("information", "Delete Customer successfully")
@@ -123,7 +129,7 @@ def updatePRODUCT():
     else:
         try:
             sql = "UPDATE Dishes SET Dish_name= %s, Price= %s WHERE Id= %s"
-            val = (a,b,c)
+            val = (b,c,a)
             mycursor.execute(sql, val)
             mydb.commit()
             messagebox.showinfo("information", "Update product successfully")
@@ -547,6 +553,16 @@ bottomFrame.pack(side=BOTTOM)
 
 # get information of customer
 
+lblIdCus= Label(leftframe1,
+                     font=('arial', 12, 'bold'),
+                     text="CustomerId", padx=1)
+lblIdCus.grid(row=0, column=0, sticky=W)
+
+txtIdCus = Entry(leftframe1,
+                     font=('arial', 12, 'bold'),
+                     width=20)
+txtIdCus.grid(row=0, column=1, pady=3, padx=20)
+
 lblFull_Name = Label(leftframe1,
                      font=('arial', 12, 'bold'),
                      text="CustomerName", padx=1)
@@ -885,14 +901,23 @@ btnAdd = Button(bottomFrame,
                 command=addCUS)
 btnAdd.grid(row=0, column=1, padx=4, pady=1)
 
-btnAdd = Button(bottomFrame,
+btndelete= Button(bottomFrame,
                 bd=4,
                 font=('arial', 13, 'bold'),
                 width=18,
                 height=3,
                 text='Delete Customer',
                 command=deleteCUS)
-btnAdd.grid(row=0, column=2, padx=4, pady=1)
+btndelete.grid(row=0, column=2, padx=4, pady=1)
+
+btnUpdateCUS = Button(bottomFrame,
+                        bd=4,
+                        font=('arial', 13, 'bold'),
+                        width=18,
+                        height=3,
+                        text='Update Customer',
+                        command=updateCUS)
+btnUpdateCUS.grid(row=0, column=3, padx=4, pady=1)
 
 btnDisCus = Button(bottomFrame,
                    bd=4,
@@ -901,7 +926,9 @@ btnDisCus = Button(bottomFrame,
                    height=3,
                    text='Display Customer',
                    command=dis_customer)
-btnDisCus.grid(row=0, column=3, padx=4, pady=1)
+btnDisCus.grid(row=0, column=4, padx=4, pady=1)
+
+
 
 btnAddDish= Button(bottomFrame,
                    bd=4,
@@ -912,14 +939,23 @@ btnAddDish= Button(bottomFrame,
                    command=addPRODUCT)
 btnAddDish.grid(row=1, column=1, padx=4, pady=1)
 
-btnUpdate_dish = Button(bottomFrame,
+btndeleteproduct= Button(bottomFrame,
                         bd=4,
                         font=('arial', 13, 'bold'),
                         width=18,
                         height=3,
                         text='Delete Dish',
                         command=deletePRODUCT)
-btnUpdate_dish.grid(row=1, column=2, padx=4, pady=1)
+btndeleteproduct.grid(row=1, column=2, padx=4, pady=1)
+
+btnUpdate_dish = Button(bottomFrame,
+                        bd=4,
+                        font=('arial', 13, 'bold'),
+                        width=18,
+                        height=3,
+                        text='Update Dishes',
+                        command=updatePRODUCT)
+btnUpdate_dish.grid(row=1, column=3, padx=4, pady=1)
 
 btnMenu = Button(bottomFrame,
                  bd=4,
@@ -928,7 +964,7 @@ btnMenu = Button(bottomFrame,
                  height=3,
                  text='Menu',
                  command=Menu)
-btnMenu.grid(row=1, column=3, padx=4, pady=1)
+btnMenu.grid(row=1, column=4, padx=4, pady=1)
 
 
 btnTotal = Button(bottomFrame,
@@ -941,25 +977,23 @@ btnTotal = Button(bottomFrame,
 btnTotal.grid(row=2, column=1, padx=4, pady=1)
 
 
-btnUpdate = Button(bottomFrame,
+btnReset = Button(bottomFrame,
                    bd=4,
                    font=('arial', 13, 'bold'),
                    width=18,
                    height=3,
                    text='Reset',
                    command=Reset)
-btnUpdate.grid(row=2, column=2, padx=4, pady=1)
+btnReset.grid(row=2, column=2, padx=4, pady=1)
 
 
-btnUpdate = Button(bottomFrame,
+btnExit = Button(bottomFrame,
                    bd=4, font=('arial', 13, 'bold'),
                    width=18,
                    height=3,
                    text='Exit',
                    command=Exit)
-btnUpdate.grid(row=2, column=3, padx=4, pady=1)
-
-
+btnExit.grid(row=2, column=3, padx=4, pady=1)
 
 
 
