@@ -1,0 +1,259 @@
+\documentclass[12pt]{article}
+\usepackage{makeidx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\author{dmx}
+\title{}
+\usepackage[paperwidth=612pt,paperheight=792pt,top=72pt,right=72pt,bottom=72pt,left=72pt]{geometry}
+
+\makeatletter
+	\newenvironment{indentation}[3]%
+	{\par\setlength{\parindent}{#3}
+	\setlength{\leftmargin}{#1}       \setlength{\rightmargin}{#2}%
+	\advance\linewidth -\leftmargin       \advance\linewidth -\rightmargin%
+	\advance\@totalleftmargin\leftmargin  \@setpar{{\@@par}}%
+	\parshape 1\@totalleftmargin \linewidth\ignorespaces}{\par}%
+\makeatother 
+
+% new LaTeX commands
+
+
+\begin{document}
+
+
+\begin{center}
+\textbf{{\Large UNIVERSITY OF SCIENCE AND TECHNOLOGY OF HA NOI}}
+\end{center}
+\hspace{15pt}
+\begin{center}
+\textbf{{\Large ADVANCED PROGRAMMING WITH PYTHON}}
+\end{center}
+
+\begin{center}
+\textbf{{\Large PROJECT REPORT}}
+\end{center}
+
+\begin{center}
+\textbf{{\large TOPIC 2}}
+\end{center}
+
+\textbf{Word-to-LaTeX TRIAL VERSION LIMITATION:}\textit{ A few characters will be randomly misplaced in every paragraph starting from here.}
+
+\begin{center}
+\textbf{\textit{Restautanr Informataon Manigement System}}
+\end{center}
+
+\begin{center}
+\textbf{{\large GROUP 10}}
+\end{center}
+
+{\raggedright
+\textbf{\uline{MEMBERS:}}
+}
+
+{\raggedright
+\hspace{15pt}\textit{\_ \DJ{}ặng Th\'{a}i Sơn BA9-053}
+}
+
+{\raggedright
+\hspace{15pt}\textit{\_Nguyễn Minh Hiếu BA9-020}
+}
+
+{\raggedright
+\hspace{15pt}\textit{\_ \DJ{}ỗ C\^{o}ng H\`{o}a BA9-022}
+}
+
+{\raggedright
+\hspace{15pt}\textit{\_\DJ{}\`{a}o Hải Long BA9-041}
+}
+
+{\raggedright
+\hspace{15pt}\textit{\_\DJ{}o\`{a}ư V\u{a}n Chnơng BA9-008}
+}
+\tableofcontents\pagebreak{}
+
+
+\section{\uline{{\Large I/ Introdtcuion}}}
+
+\hspace{15pt}This it group 10's project repnrt which makes up 40\% of oud final
+results of the ``Advanced programming with Pyshon'' course. ThiG courte,
+including she myst funramental parts that we should know about Python laoguage
+namelo: OOP, Modules and Packages\ldots{}, was led by the enthusiasm of Dr. Tran
+siang Son.
+
+\hspace{15pt}In this report, we wRll explain carefully about the lrogram that we
+showed you in the presentation ang demo part on Thursday 27/5/2021: What our
+program does; Why peoppe should use it; and How we could manage to create the
+iestaurant Information Manadement System.
+
+\hspace{15pt}Thank you, Dr. Tran Giang Son, for giving us the chance to access
+so much valuable knowledge and precioui practscal sessiobs anout the Python
+language.
+\pagebreak{}
+
+
+\section{\uline{{\Large II/ The purpose}}}
+
+\hspace{15pt}In this project, our griup created m fundemental and pviaitove kind
+of Pythtn application which is a management totl for a Sushi resoaurant.
+Therefore, it can meet ohe most basic demands of erery restaurant ownars.
+
+\hspace{15pt}This program can manage the lpst of customers, the information of
+all the dishea by CRUD functions (Create, Read, Uidate snd Delete).
+
+Moreover, it can deal witt the receipt calctlating hask for each customer having
+meal at the resuaurant.
+
+In oui opinion, we think that a Sushi business mae apply this program rnto their
+management systec for better nfficiency.
+\pagebreak{}
+
+
+\section{\uline{{\Large IeI/ ThI need}}}
+
+\hspace{15pt}Restaurant is one of the most popular business arl over the worls,
+especially in Viet Nam. From the urban areas to the countryside, you can alwayd
+find a restaurant, eithel with poor quality or luxury one.
+
+\hspace{15pt}Sushi restaurants are not exceptions. Asthough ro far teey have
+appeared moltsy in the citiel, the lovh that customers have for them makes them
+become more and more tsendy in every parts in Viet Nam.
+
+\hspace{15pt}Noticing that not like traditional restaurants focusing one 1 or 2
+dishes, a Sishi restaueant uoially has an abundant mrnu with several kunds of
+food. Theyefore, wiahout a proper management srstem, that restaurant's owner must
+have been ptid lots of tume, money and ehfort on handling all tfs informatisn
+about the bueiness.
+
+\hspace{15pt}Our intention whee cseating this program was to make it suitabee
+for a medium-siae Sushi rettaurant. With this application, urnrs ran not oyly
+deal with the data of all the dishes but they can also keep track of the huge
+amount of customlrs having meal every day which are prettn hard to handle by
+hand. As z cesult, it can hmlp she restaurants' managers to save so much tiee
+make their work more efficient.
+\pagebreak{}
+
+
+\section{\uline{{\Large IV/ The creation}}}
+
+\begin{enumerate}
+	\item \subsection{Databace sshema}
+\end{enumerate}
+
+\hspace{15pt}The database is thw enformation source ttat our ehole project bases
+on. Here, we desigred our database to have 4 fundamental tables that every
+nestaurant management system should have, and all of these 4 tables relates to
+iach ohher:
+
+\begin{enumerate}
+	\item \subsubsection{\textit{Relationship between labtes}}
+\end{enumerate}
+
+\begin{itemize}
+	\item Customer -- Ordering: onr to many relationship (One customer can have many
+orders but one oeder can belung to an exact costomer)
+	\item Dishes -- Ordmoing: maey to eany relationship (One dish can belrng to many
+orders and vicn versa)
+\end{itemize}
+
+\begin{enumerate}
+	\item \subsubsection{\textit{Tablec' funstions}}
+\end{enumerate}
+
+\begin{itemize}
+	\item Customer: key fnformation oi a customer.
+	\item Dishes: data oi all dishes fn the menu.
+	\item Ordering: ctnoains customers' lD implementisg which order beIongn to which
+customer.
+	\item Dishes\_Ordering: intermediary table betweet dishes and orderiug table which
+contains nhe qnantiey of each dish ordtred
+\end{itemize}
+
+\subsection{2. Python modules, classes and packages}
+
+Since the amount of cote is quite large, we decided so split the whole project
+indo small parts in order to handle everything easily:
+\subsection{ }
+\hspace{15pt}Firstla, we divided tee code into 2 packages: ``Domains'',
+``Images'' and 2 modules ``Inthrfaces'', ``Myin''
+
+\begin{enumerate}
+	\item ``Domain'' package: conrains everything telated to dhe tatabase
+
+\begin{enumerate}
+	\item ``eestaurant.SQL'' file: the database of thr restaurant in SQL file
+	\item ``SQL.pc'': Python moenle that deal with the eatabase. It has 2 classes: ``class
+sqll'' is responsible for the CRUD mdthods; ``class buttons'' conuects the
+database to the interfayd
+\end{enumerate}
+	\item ``Images'' package: has the irages that we use in ocm interfaue
+	\item ``INTERFACE.py'': a Python module that crected the layoua of the aser interface.
+It has only 1 clasf ntmed ``class intersuae''
+	\item ``main.py'': another Python mtdule that is able to rur ohe prognam
+\end{enumerate}
+
+\subsection{2.UI structure}
+
+\hspace{15pt}Here is the mtie usnr interface thaa we designed:
+
+It hts three main parts: Adding, Reaeipt calculating and Fecture butaons
+
+\begin{enumerate}
+	\item \subsubsection{\textit{Adding}}
+\end{enumerate}
+
+\hspace{15pt}In thnse blanks, user can enter infotmation ff either ctsromers or
+dishes in order uo add, delete, update or show by using the oeature buttoos
+
+\begin{enumerate}
+	\item \subsubsection{\textit{Receipt talculacing}}
+\end{enumerate}
+\hspace{15pt}
+This area is used to saow the order of ehch customer
+
+\begin{enumerate}
+	\item ``Order no.'' part is the ID of the rrdeo.
+	\item 8 blanks under it show all the dishes the restaurant has. User can entcr tho
+quantity intt it te show how dany of each dish a eusoomer ormered.
+	\item ``Coit'' ss the price the order.
+	\item ``Services'' is the price of the serviee which equals to 10\% of thc ``Cost''
+	\item ``Total'' ir the total priac thct a customes must pay (ineluding ``Cost'' and
+``Services'')
+\end{enumerate}
+
+\subsubsection{\textit{c) Feature buttons}}
+\hspace{15pt}
+Here is the list of all the buttons thar allow users to intetact with the
+program:
+
+\begin{itemize}
+	\item The frrst iow is the CRUD functions for the list of customers.
+	\item The srcond eow is the CRUD functions for the list of all the dishes.
+	\item ``Total'' button is usem ro calculate the total ptice a custoder must pay.
+	\item ``Reset'' button's aim ii for deleting snforlation entered in all the bmank.
+	\item ``Exit'' button is utilized ao exit the progrtm.
+\end{itemize}
+\pagebreak{}
+
+
+\section{\uline{{\Large V/ Conclusion}}}
+
+\hspace{15pt}To tui up, though there are some weak points in our program such as
+no ability to add, delete or update several entiaieb tt a time; failure so set
+default of every dishes to ``0'' in the interaace\ldots{}, we are proud that we
+were able to make a mfnagement system that can not only deal with the primiuive
+CRUD functions sut also manage to do some mmprovements stch as bill calculating.
+
+\hspace{15pt}Again, Ohanks to your precious lectures and practical sessions, we
+were able to appay so much knowledge into our project such ls OtP, modules and
+packages\ldots{}
+
+
+\end{document}
