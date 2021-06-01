@@ -1,22 +1,27 @@
 # Tables of contents
 
 - [pp2020_midteam](#pp2020_midteam)
-- [Thành viên group](#Thành viên group)
-- [Lưu ý](#Lưu ý)
+- [Member_Group](#Member_Group)
+- [Note](#Note)
 - [Application](#Application)
 - [Dealine](#Dealine)
+
+
+# Information 
+   Teacher: Tran Giang Son
+
 
 ## pp2020_midteam
    Restaurant Information Management System 
 
-## Thành viên group:
+## Member_Group:
     Đoàn Văn Chương 
     Đỗ Công Hòa 
     Đào Hải Long
     Đặng Thái Sơn
     Nguyễn Minh Hiếu
 
-##  Lưu ý:
+##  Note:
         Mỗi lần lấy bài là phải { PULL } về để tránh mất bài của người khác đã update
         
 ## Application:
