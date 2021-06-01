@@ -1,8 +1,9 @@
 # Tables of contents
 
 - [pp2020_midteam](#pp2020_midteam)
-- [Thành viên group:](#Thành viên group)
-- [Lưu ý:](#Lưu ý)
+
+- [Thành viên group](#Thành viên group:)
+- [Lưu ý](#Lưu ý:)
 - [Application](#Application)
 - [Dealine](#Dealine)
 
