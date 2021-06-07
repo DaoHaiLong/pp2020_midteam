@@ -60,7 +60,7 @@
     One difference is that a smaller restaurant may not have the resources to hire employees to perform each task, leaving a lot of the responsibility on the owner and making restaurant management difficult. 
     This can be especially daunting if they don’t have any formal restaurant management experience.
     If you are a restaurant manager looking for tips about how to improve your business, then look no further. This article is a full guide that will detail how to manage a restaurant.
-      ![](images/1a.jpg)
+![](images/1a.jpg)
 
 ### 1. Mission Statement and Strategy<a name="b"></a>
       In most cases, coming up with a mission statement for your restaurant is straightforward. You just need to be clear about why you set up your restaurant, what sets you apart, and what you hope to achieve. Some mission statements from famous restaurants are:
@@ -93,7 +93,7 @@
            Alternatively, restaurants that make a lot of money from drinks or events may not mind a slightly lower profit margin on some food items to get people through the door.
 
            Your food costs are unlikely to be uniform across the menu. Some items will have higher base costs while others will come in lower. Think about grouping high-cost items with low-cost ones to balance this out. You could do this through set menus or offers.
-            ![](images/Howtoprices.jpg)
+![](images/Howtoprices.jpg)
         
 ####    Keep Your Menu Pricing Up to Date<a name="Kepp"></a>
            Costs of ingredients change frequently. Because of this, you should ensure your menu prices reflect this.
@@ -160,7 +160,7 @@
          When the employee has learned how to do each task in the program, the trainer — be it a manager or a senior employee — can check the task off the list. This lets everyone in the organization know the training has been completed.
 
          You could even think about creating short training videos that show employees how to perform tasks. This is a technique that has been used by sandwich chain Arby’s, with their vice president telling Restaurant Business Magazine the company thinks “providing content in the same ways that our restaurant employees are consuming all other content” is important.
-        ![](images/3mana.jpg)
+![](images/3mana.jpg)
 ####  Clearly Define Employee Roles<a name="Clearly "></a>
 
          Clearly defining the roles of those who work in your restaurant can ensure everyone knows what they need to do and who they are reporting to at any one time. This way, if an issue arises in your restaurant, your staff know exactly whose responsibility it is to take care of the problem.
