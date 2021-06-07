@@ -15,6 +15,7 @@
      + [Keep Your Menu Pricing Up to Date](#Kepp)
      + [How do Your Prices Fit in With the Competition?](#Prices)
      + [How to Produce a Great Customer Experience](#Product)
+     
    *[3. Managing Your Employees](#d)
      + [Hire the Right Staff](#Hire)
      + [Train Employees Well](#Train)
