@@ -21,6 +21,7 @@
      + [Train Employees Well](#Train)
      + [Clearly Define Employee Roles](#Clearly)
      + [Release Work Schedules in a Timely Manner](#Release)
+     
 # Information
  
    Teacher: Tran Giang Son
@@ -158,11 +159,13 @@
          You could even think about creating short training videos that show employees how to perform tasks. This is a technique that has been used by sandwich chain Arby’s, with their vice president telling Restaurant Business Magazine the company thinks “providing content in the same ways that our restaurant employees are consuming all other content” is important.
 
 ####  Clearly Define Employee Roles<a name="Clearly "></a>
+
          Clearly defining the roles of those who work in your restaurant can ensure everyone knows what they need to do and who they are reporting to at any one time. This way, if an issue arises in your restaurant, your staff know exactly whose responsibility it is to take care of the problem.
 
          Defining roles is also essential if you are a restaurant owner and you expect to take time off. By designating someone who will be in charge while you are away, and who reports to them – as well as what they should do – your restaurant will be able to survive without you, even if it is only for a short time.
 
 ####  Release Work Schedules in a Timely Manner<a name="Release"></a>
+
          Scheduling is important both for managers and employees. Ideally, you will produce your schedule as far in advance as possible so that employees can confirm they are available when you have asked them to be.
 
          Additionally, you’ll need to be aware of variations in how busy your restaurant is likely to be. While most weekday evenings may be fairly quiet, if the following day is a public holiday or if there is a large event happening in the area, you may find your restaurant is busier on those days.
