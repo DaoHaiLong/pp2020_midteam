@@ -10,12 +10,14 @@
    *[1. Mission Statement and Strategy](#b)
        
    *[2. Managing Production](#c)
+   
        +[Food](#F)
        +[How to Price Your Menu](#How)
        +[Keep Your Menu Pricing Up to Date](#Kepp)
        +[How do Your Prices Fit in With the Competition?](#Prices)
        +[How to Produce a Great Customer Experience](#Product)
    *[3. Managing Your Employees](#d)
+   
        +[Hire the Right Staff](#Hire)
        +[Train Employees Well](#Train)
        +[Clearly Define Employee Roles](#Clearly)
