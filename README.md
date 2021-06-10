@@ -5,9 +5,9 @@
 - [Note](#Note)
 - [Application](#Application)
 - [Dealine](#Dealine)
-- [Restaurant Management Guide](#a)
 - [Relax](#r)
 - [Appended](#A)
+- [Restaurant Management Guide](#a)
 
    *[1. Mission Statement and Strategy](#b)
        
