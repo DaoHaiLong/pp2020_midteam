@@ -190,6 +190,8 @@
 
 -[Python](https://github.com/SugandhAggarwal/RESTAURANT-MANAGEMENT-SYSTEM)
 
+-{@slkideshare: Advanced_Python_report}
+
 
 
 
