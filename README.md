@@ -6,6 +6,8 @@
 - [Application](#Application)
 - [Dealine](#Dealine)
 - [Restaurant Management Guide](#a)
+- [Relax](#r)
+- [Appended](#A)
 
    *[1. Mission Statement and Strategy](#b)
        
@@ -177,8 +179,15 @@
 
         A final thing to remember is the legal requirements of the area you work in. You may have staff who want to work every day for as long as possible. However, not only does this risk burnout but it may also be breaking the law if they work over a certain number of hours in a day or a week.
 
+## Relaxation <a name="r"></a>
+ 
+-{@youtube: https://www.youtube.com/watch?v=GeXUPlTpU_U}
 
+## Appendix <a name="A"></a>
 
+-[Markdown bases](https://viblo.asia/helps/cach-su-dung-markdown-bxjvZYnwkJZ)
+
+-[Python](https://github.com/SugandhAggarwal/RESTAURANT-MANAGEMENT-SYSTEM)
 
 
 
