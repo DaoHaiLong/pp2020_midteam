@@ -180,8 +180,9 @@
         A final thing to remember is the legal requirements of the area you work in. You may have staff who want to work every day for as long as possible. However, not only does this risk burnout but it may also be breaking the law if they work over a certain number of hours in a day or a week.
 
 ## Relaxation <a name="r"></a>
- 
-   {@youtube:  https://www.youtube.com/watch?v=GeXUPlTpU_U}
+{@youtube:  https://www.youtube.com/watch?v=GeXUPlTpU_U}
+
+{@youtube: https://www.youtube.com/watch?v=HndN6P9ke6U}
 
 ## Appendix <a name="A"></a>
 
